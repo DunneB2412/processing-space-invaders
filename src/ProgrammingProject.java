@@ -45,7 +45,7 @@ public class ProgrammingProject extends PApplet{
 
     public void draw(){
         int state = 0;
-        if((state = game.stop())==0){
+        if((state = game.state())==0){
             background(0);
             //image(fade,0,0);
             game.tick();

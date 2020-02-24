@@ -1,3 +1,5 @@
+import processing.core.PImage;
+
 public class Explosion extends ImagePObject{
     //private static final PImage[] explosion = new PImage[]{loadImage("boom_3.png"), loadImage("boom_2.png"), loadImage("boom_1.png")}
     private final float force;
@@ -5,8 +7,8 @@ public class Explosion extends ImagePObject{
     private final int s;
     private int duration;
 
-    Explosion(float aoe, int duration, PObject O, float force, int particalN){
-        super(O.position.clone(), (int)aoe, (int)aoe, loadImage("boom_3.png"), loadImage("boom_2.png"), loadImage("boom_1.png"));
+    Explosion(float aoe, int duration, PObject O, float force, int particalN, PImage... pImages){
+        super(O.position.clone(), (int)aoe, (int)aoe, pImages);
         int root = (int)Math.sqrt(particalN);
         particalN = root*root;
         particals = new PObject[particalN];
@@ -36,7 +38,7 @@ public class Explosion extends ImagePObject{
                 if((r=((position.X-p.position.X)-(position.Y-p.position.Y)))==0){
                     r = (position.X-p.position.X)+(position.Y-p.position.Y);
                 }
-                p.tick(new Force(new Vector((p.position.X-position.X)*force/2, (p.position.Y-position.Y)*force/2),0.01*((r)*force/2),0));
+                p.tick(new Force(new Vector((p.position.X-position.X)*force/2, (p.position.Y-position.Y)*force/2), (float) (0.01*((r)*force/2)),0));
             }else{
                 p.tick(new Force(new Vector(0,0),0,0));
             }

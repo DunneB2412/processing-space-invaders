@@ -1,11 +1,13 @@
+import processing.core.PImage;
+
 public class Upgrade extends ImagePObject{
     private final int type;
     public final float power;
     private int uces;
 
 
-    Upgrade(Vector position, int p, int d, float s){
-        super(position, 40, 40,loadImage("upgrade.png"));
+    Upgrade(Vector position, int p, int d, float s, PImage... pImages){
+        super(position, 40, 40,pImages);
         type = p;
         power = s;
         uces = d;

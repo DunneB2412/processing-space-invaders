@@ -8,7 +8,8 @@ public class Player extends ImagePObject{
     private boolean shieldActive;
     private ArrayList<Upgrade> avalibleUpgrades;
     Player(int w, int h, Cannon startCannon, PImage... images){
-        super(new Vector(width/2,height-((h/2)+5)),w,h,images);
+        super(new Vector(0,0),w,h,images);
+        this.position = new Vector(width/2, height-(H/2)+5);
         cannons = new ArrayList<Cannon>();
         //startCannon.addUpgrade(new Upgrade(position, 5, 1000000, 15));
         //startCannon.addUpgrade(new Upgrade(position, 4, 1000000, 15));

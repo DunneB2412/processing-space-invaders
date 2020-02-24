@@ -66,9 +66,9 @@ public class Alien extends Cannon{
     @Override
     PObject[] deathSpawns(){
         if(random(1)<=2){
-            grupe.add( new Upgrade(this.position.clone(), (int)random(0,5), (int)random(20, 200), (int)random(5,15)));// maby drop bomb on death
+            grupe.add( new Upgrade(this.position.clone(), (int)random(0,5), (int)random(20, 200), (int)random(5,15),loadImage("upgrade.png")));// maby drop bomb on death
         }
-        return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, 0.02, 128), this.ghost.spawnAt(position)};
+        return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, 0.02f, 128,loadImage("boom_3.png"), loadImage("boom_2.png"), loadImage("boom_1.png")), this.ghost.spawnAt(position)};
     }
 
     @Override

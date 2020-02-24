@@ -103,7 +103,7 @@ public class GameInstance extends ProgrammingProject{
         }
         return new Force(new Vector(a,0),0,0);
     }
-    int stop(){
+    int state(){
         if(player.toDeleat()){
             return 1;
         }
