@@ -101,6 +101,9 @@ public class HitBox{
         return new HitBox(new Vector(ProgrammingProject.processing.mouseX, ProgrammingProject.processing.mouseY),1,1).collide(this);
     }
 
+    public HitBox cloneHitbox() {
+        return this.clone();
+    }
     //private void wallPhase(){
     //}
 }

@@ -20,7 +20,7 @@ public class ProgrammingProject extends PApplet{
     public PObject[] buttone = new PObject[5];
 
     public void settings(){
-        size(600,800);
+        size(800,800);
     }
 
     public void setup(){
@@ -37,7 +37,7 @@ public class ProgrammingProject extends PApplet{
 //        game = new GameInstance();
 
         for(int yOffset =1; yOffset<= buttone.length; yOffset++){
-            buttone[yOffset-1] = new ImagePObject(new Vector(width/2-200, (80+20)*yOffset), 80, 400,  loadImage("nuke.png"));
+            buttone[yOffset-1] = new ImagePObject(new Vector(width/2, (80+20)*yOffset), 80, 80,  loadImage("nuke.png"));
             buttone[yOffset-1].setAsngle((float) (-Math.PI/2));
         }
         background(0);
@@ -59,8 +59,20 @@ public class ProgrammingProject extends PApplet{
     }
 
     public void draw(){
-        for(PObject object: buttone) {
-            object.tick(new Force(new Vector(0,0),0,0));
+        background(0);
+        for(int i=0; i<buttone.length; i++) {
+            buttone[i].tick(new Force(new Vector(0,0),0,0));
+            if(buttone[i].mouseOver()&&!(buttone[i] instanceof Explosion)){
+                buttone[i].cloneHitbox().show();
+                if(mousePressed) {
+                    buttone[i] = new Explosion(buttone[i].W, 100, buttone[i], 1, 64, ProgrammingProject.processing.loadImage("boom_3.png"));
+                    buttone[i].setAsngle((float) (-Math.PI / 2));
+                }
+            }
+            if(buttone[i].toDeleat()) {
+                buttone[i] = new ImagePObject(buttone[i].position, 80, 80,  loadImage("nuke.png"));
+                buttone[i].setAsngle((float) (-Math.PI/2));
+            }
         }
 //        int state = 0;
 //        if((state = game.state())==0){
