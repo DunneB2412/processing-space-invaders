@@ -1,13 +1,17 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+
+import java.io.File;
+
 public class ProgrammingProject extends PApplet{
     public static PApplet processing;
+    public static final String DATA_PATH= System.getProperty("user.dir")+"\\src\\data\\";
     public static void main(String... args){
         PApplet.main("ProgrammingProject");
     }
 
-//    public static SoundFile[] sounds;
+//   public static SoundFile[] sounds;
 //    SinOsc sine100;
 //    SawOsc saw40;
 //    public static WhiteNoise noise;
@@ -23,10 +27,12 @@ public class ProgrammingProject extends PApplet{
     }
 
     public void setup(){
+
         processing = this;
-        youDied = loadImage("src/main/data/youdead.png");
-        woop = loadImage("woop2.png");
-        fade = loadImage("screen_fader.png");
+        //dataPath(DATA_PATH);
+        youDied = loadImage("youdead.png");
+        woop = loadImage(DATA_PATH+"woop2.png");
+        fade = loadImage(DATA_PATH+"screen_fader.png");
         youDied.resize(width, height);
         woop.resize(width, height);
         fade.resize(width, height);
