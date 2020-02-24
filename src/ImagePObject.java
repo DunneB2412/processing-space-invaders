@@ -21,10 +21,10 @@ public class ImagePObject extends PObject{
     @Override
     void sprite(){
         if(textures.length>0){
-            image(textures[(int)random(textures.length)], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[(int)ProgrammingProject.processing.random(textures.length)], -W/2, -H/2);
         }
         else{
-            rect(-W/2,-H/2,W,H);
+            ProgrammingProject.processing.rect(-W/2,-H/2,W,H);
         }
     }
 

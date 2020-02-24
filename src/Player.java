@@ -9,7 +9,7 @@ public class Player extends ImagePObject{
     private ArrayList<Upgrade> avalibleUpgrades;
     Player(int w, int h, Cannon startCannon, PImage... images){
         super(new Vector(0,0),w,h,images);
-        this.position = new Vector(width/2, height-(H/2)+5);
+        this.position = new Vector(ProgrammingProject.processing.width/2, ProgrammingProject.processing.height-(H/2)+5);
         cannons = new ArrayList<Cannon>();
         //startCannon.addUpgrade(new Upgrade(position, 5, 1000000, 15));
         //startCannon.addUpgrade(new Upgrade(position, 4, 1000000, 15));
@@ -24,7 +24,8 @@ public class Player extends ImagePObject{
 
     @Override
     void tick(Force eForce){
-        if(shieldHelth > 0 && toggleCooldown == 0 && key == CODED && keyPressed && keyCode == DOWN){
+        if(shieldHelth > 0 && toggleCooldown == 0 && ProgrammingProject.processing.key == ProgrammingProject.processing.CODED &&
+                ProgrammingProject.processing.keyPressed && ProgrammingProject.processing.keyCode == ProgrammingProject.processing.DOWN){
             shieldActive = !shieldActive;
             toggleCooldown = 10;
         }
@@ -46,7 +47,7 @@ public class Player extends ImagePObject{
 
 
             // handle cannon angle better
-            float rot = cannon.angle + cannon.position.getAngle(new Vector(mouseX, mouseY));
+            float rot = cannon.angle + cannon.position.getAngle(new Vector(ProgrammingProject.processing.mouseX, ProgrammingProject.processing.mouseY));
             float a = 0.05f;
             float eFocous = a;//*cannon.localForce.rpt;
             if(rot <= eFocous && rot >= -eFocous){
@@ -54,13 +55,13 @@ public class Player extends ImagePObject{
             }else{
                 rot *= 0.001;
             }
-            if(cannon.angle>(PI/2)||cannon.angle<(-PI/2)){
+            if(cannon.angle>(Math.PI/2)||cannon.angle<(-Math.PI/2)){
                 rot = cannon.localForce.rpt*1.1f;
-                while(cannon.angle>(PI/2)){
-                    cannon.angle -= PI/180;
+                while(cannon.angle>(Math.PI/2)){
+                    cannon.angle -= Math.PI/180;
                 }
-                while(cannon.angle<(-PI/2)){
-                    cannon.angle += PI/180;
+                while(cannon.angle<(-Math.PI/2)){
+                    cannon.angle += Math.PI/180;
                 }
             }
             cannon.tick(new Force(new Vector(0,0),-rot,0));
@@ -69,9 +70,9 @@ public class Player extends ImagePObject{
     @Override
     void sprite(){
         if(shieldActive){
-            image(textures[(int)random(textures.length-1)+1], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[(int)ProgrammingProject.processing.random(textures.length-1)+1], -W/2, -H/2);
         }else{
-            image(textures[0], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[0], -W/2, -H/2);
         }
     }
 

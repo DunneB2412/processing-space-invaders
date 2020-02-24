@@ -31,17 +31,17 @@ public class Bulit extends ImagePObject{
     @Override
     void sprite(){
         if(textures.length<=1){
-            image(textures[0], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[0], -W/2, -H/2);
             return;
         }
         if(durability>1){
-            image(textures[1], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[1], -W/2, -H/2);
         }
         if(cycle+dir>(textures.length*6)-1||cycle+dir<0){
             dir*=-1;
         }
         cycle+=dir;
-        image(textures[(cycle/6)], -W/2, -H/2);
+        ProgrammingProject.processing.image(textures[(cycle/6)], -W/2, -H/2);
     }
     @Override
     boolean toDeleat(){

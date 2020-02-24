@@ -48,7 +48,7 @@ public class Alien extends Cannon{
     }
     @Override
     void sprite(){
-        image(textures[0], -W/2, -H/2);
+        ProgrammingProject.processing.image(textures[0], -W/2, -H/2);
     }
 
     HitBox cloneHitBox(){
@@ -65,21 +65,25 @@ public class Alien extends Cannon{
     }
     @Override
     PObject[] deathSpawns(){
-        if(random(1)<=2){
-            grupe.add( new Upgrade(this.position.clone(), (int)random(0,5), (int)random(20, 200), (int)random(5,15),loadImage("upgrade.png")));// maby drop bomb on death
+        if(ProgrammingProject.processing.random(1)<=2){
+            grupe.add( new Upgrade(this.position.clone(), (int)ProgrammingProject.processing.random(0,5),
+                    (int)ProgrammingProject.processing.random(20, 200), (int)ProgrammingProject.processing.random(5,15),
+                    ProgrammingProject.processing.loadImage("upgrade.png")));// maby drop bomb on death
         }
-        return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, 0.02f, 128,loadImage("boom_3.png"), loadImage("boom_2.png"), loadImage("boom_1.png")), this.ghost.spawnAt(position)};
+        return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, 0.02f, 128,
+                ProgrammingProject.processing.loadImage("boom_3.png"), ProgrammingProject.processing.loadImage("boom_2.png"),
+                ProgrammingProject.processing.loadImage("boom_1.png")), this.ghost.spawnAt(position)};
     }
 
     @Override
     protected boolean spawn(PObject lspawn){
         if(!shot){
             Force pForce = new Force(new Vector(0,-1*(5)),0,0);
-            pForce.momentom.rotate(angle-(PI));
+            pForce.momentom.rotate((float) (angle-(Math.PI)));
 
             ((Bulit)lspawn).push(pForce);
             if(canSpawn&& spawnZone.wallHit()==0
-                    && random(spawnChance.X)<=spawnChance.Y){
+                    && ProgrammingProject.processing.random(spawnChance.X)<=spawnChance.Y){
                 ((Bulit)lspawn).setAtributes(1, 2, 40, true);
                 grupe.add(lspawn);
                 //SoundFile boom = ex1.sounds[3];

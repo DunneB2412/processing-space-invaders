@@ -1,8 +1,11 @@
 import processing.core.PApplet;
-//import processing.core.;
 import processing.core.PImage;
 
 public class ProgrammingProject extends PApplet{
+    public static PApplet processing;
+    public static void main(String... args){
+        PApplet.main("ProgrammingProject");
+    }
 
 //    public static SoundFile[] sounds;
 //    SinOsc sine100;
@@ -15,14 +18,18 @@ public class ProgrammingProject extends PApplet{
 
     private GameInstance game;
 
-    public void setup(){
+    public void settings(){
         size(1800,1000);
-        youDied = loadImage("youdead.png");
-        woop = loadImage("woop2.png");
-        fade = loadImage("screen_fader.png");
-        youDied.resize(width, height);
-        woop.resize(width, height);
-        fade.resize(width, height);
+    }
+
+    public void setup(){
+        processing = this;
+//        youDied = loadImage("youdead.png");
+//        woop = loadImage("woop2.png");
+//        fade = loadImage("screen_fader.png");
+//        youDied.resize(width, height);
+//        woop.resize(width, height);
+//        fade.resize(width, height);
         t = true;
         game = new GameInstance();
         background(0);

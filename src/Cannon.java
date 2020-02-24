@@ -19,15 +19,15 @@ public class Cannon extends Spawner{
     @Override
     void sprite(){
         if(coolDownCounter == 0){
-            image(textures[0], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[0], -W/2, -H/2);
         }
         else{
-            image(textures[((coolDown-coolDownCounter)/(coolDown/textures.length+1))], -W/2, -H/2);
+            ProgrammingProject.processing.image(textures[((coolDown-coolDownCounter)/(coolDown/textures.length+1))], -W/2, -H/2);
         }
     }
     @Override
     protected boolean spawn(PObject lspawn){
-        if(mousePressed && super.canSpawn && coolDownCounter==0){
+        if(ProgrammingProject.processing.mousePressed && super.canSpawn && coolDownCounter==0){
             ((Bulit)lspawn).setAtributes(getUpgrade(1,1),getUpgrade(3,1),getUpgrade(4,1), false);
             Force pForce = new Force(new Vector(0,-1*(5+getUpgrade(2,0)/3)),0,0);
             pForce.momentom.rotate(angle);

@@ -56,7 +56,7 @@ public class Explosion extends ImagePObject{
     void sprite(){
         int t = (duration/(s/textures.length+1));
 
-        image(textures[t], -W/2, -H/2);
+        ProgrammingProject.processing.image(textures[t], -W/2, -H/2);
     }
     @Override
     PObject[] deathSpawns(){

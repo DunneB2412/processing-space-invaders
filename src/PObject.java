@@ -23,15 +23,15 @@ public class PObject extends HitBox{
         }
         this.localForce.add(eForce);
         position.add(localForce.momentom);
-        angle += (2*PI)*localForce.rpt;
+        angle += (2*Math.PI)*localForce.rpt;
         show();
     }
 
     @Override
     void sprite(){
         int[] colour = this.colour.get();
-        fill(colour[0], colour[1], colour[2]);
-        rect(-W/2, -H/2, W, H);
+        ProgrammingProject.processing.fill(colour[0], colour[1], colour[2]);
+        ProgrammingProject.processing.rect(-W/2, -H/2, W, H);
     }
 
     HitBox cloneHitBox(){

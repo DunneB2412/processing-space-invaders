@@ -15,7 +15,7 @@ public class Upgrade extends ImagePObject{
     }
     void tick(Force eForce){
         super.tick(new Force(new Vector(0,+0.01f),0,0));
-        image(textures[(int)random(textures.length)], topLeft().X, topLeft().Y);
+        ProgrammingProject.processing.image(textures[(int)ProgrammingProject.processing.random(textures.length)], topLeft().X, topLeft().Y);
     }
     PObject spawnAt(Vector position){
         return new Ghost(W,H,position.clone(),textures);

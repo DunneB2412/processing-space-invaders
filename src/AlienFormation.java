@@ -14,7 +14,6 @@ public class AlienFormation extends Alien{
     @Override
     void tick(Force eForce){
         Vector eVector = new Vector(0,0);
-        eForce = localForce;
         for(PObject o: grupe){
             if(this.collide(o)&& o instanceof Alien){
                 Force h = o.localForce;
@@ -27,7 +26,7 @@ public class AlienFormation extends Alien{
             dir2 = 1;
             IFraims=stepCounter2 = (int)(H*1.5);
         }
-        if(IFraims==0 && position.X>(width-(W*1.5))&&stepCounter2==-1){
+        if(IFraims==0 && position.X>(ProgrammingProject.processing.width-(W*1.5))&&stepCounter2==-1){
             eVector = new Vector(localForce.momentom.X*-1,1);
             dir2 = -1;
             IFraims=stepCounter2 = (int)(H*1.5);

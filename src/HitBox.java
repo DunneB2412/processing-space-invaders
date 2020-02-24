@@ -1,4 +1,4 @@
-public class HitBox extends ProgrammingProject{
+public class HitBox{
 
     final int W, H;
     protected int IFraims;
@@ -30,10 +30,10 @@ public class HitBox extends ProgrammingProject{
         if((position.Y-H/2)<(0-H*inOut)){
             out += 1;
         }
-        if((position.X+(W/2))>(width+W*inOut)){
+        if((position.X+(W/2))>(ProgrammingProject.processing.width+W*inOut)){
             out += 20;
         }
-        if((position.Y+(H/2))>(height+H*inOut)){
+        if((position.Y+(H/2))>(ProgrammingProject.processing.height+H*inOut)){
             out += 2;
         }
         if(hardWall && out > 0){
@@ -84,17 +84,17 @@ public class HitBox extends ProgrammingProject{
         return false;
     }
     void show(){
-        pushMatrix();
-        translate(position.X, position.Y);
-        rotate(angle);
+        ProgrammingProject.processing.pushMatrix();
+        ProgrammingProject.processing.translate(position.X, position.Y);
+        ProgrammingProject.processing.rotate(angle);
         sprite();
-        popMatrix();
+        ProgrammingProject.processing.popMatrix();
     }
     void sprite(){
-        fill(200);
-        rect(-W/2, -H/2, W, H);
-        fill(255);
-        rect((-W/2)+3, (-H/2)+3, W-6, H-6);
+        ProgrammingProject.processing.fill(200);
+        ProgrammingProject.processing.rect(-W/2, -H/2, W, H);
+        ProgrammingProject.processing.fill(255);
+        ProgrammingProject.processing.rect((-W/2)+3, (-H/2)+3, W-6, H-6);
     }
 
     //private void wallPhase(){

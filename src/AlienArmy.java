@@ -48,8 +48,6 @@ public class AlienArmy extends ProgrammingProject{
         }
     }
     boolean finished(){
-        //System.out.println(objects.size());
-
         return spawnCount<=0 && objects.size()==0;
     }
 

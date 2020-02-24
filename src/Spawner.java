@@ -54,7 +54,7 @@ public class Spawner extends ImagePObject{
     }
     protected boolean spawn(PObject lspawn){
         if(canSpawn&& spawnZone.wallHit()==0
-                && random(spawnChance.X)<=spawnChance.Y){
+                && ProgrammingProject.processing.random(spawnChance.X)<=spawnChance.Y){
             grupe.add(lspawn);
             return true;
         }
