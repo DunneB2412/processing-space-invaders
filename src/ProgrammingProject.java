@@ -18,7 +18,7 @@ public class ProgrammingProject extends PApplet{
 //    SawOsc saw40;
 //    public static WhiteNoise noise;
 //    public static LowPass lowPass;
-//    private PImage youDied, woop, fade;
+    private PImage youDied, woop, fade;
 //    private boolean t;
 //    int i = 0;
 //    private GameInstance game;
@@ -35,23 +35,23 @@ public class ProgrammingProject extends PApplet{
         //dataPath(DATA_PATH);
 //        youDied = loadImage("youdead.png");
 //        woop = loadImage("woop2.png");
-//        fade = loadImage("screen_fader.png");
+        fade = loadImage("screen_fader.png");
 //        youDied.resize(width, height);
 //        woop.resize(width, height);
-//        fade.resize(width, height);
+        fade.resize(width, height);
 //        t = true;
 //        game = new GameInstance();
-        Color[] colors = new Color[]{new Color(255,100,100) {
+        Color[] colors = new Color[]{new Color(255,10,10) {
             @Override
             public int[] get() {
                 return super.get();
             }
-        },new Color(100,255,100) {
+        },new Color(10,255,10) {
             @Override
             public int[] get() {
                 return super.get();
             }
-        },new Color(100,100,255) {
+        },new Color(10,10,255) {
             @Override
             public int[] get() {
                 return super.get();
@@ -88,12 +88,13 @@ public class ProgrammingProject extends PApplet{
         for(int i=0; i<buttone.length; i++) {
             buttone[i].tick(new Force(new Vector(0,0),0,0));
             if(buttone[i].mouseOver()&&!(buttone[i] instanceof Explosion)){
-                buttone[i].cloneHitbox().show();
+                ImagePObject pObject = new ImagePObject(buttone[i].position, buttone[i].W, buttone[i].H,  fade);
+                pObject.show();
                 if(mousePressed) {
-                    Color color = buttone[i].getColour();
+                    Color color2 = buttone[i].getColour();
                     buttone[i] = new Explosion(buttone[i].W, 200, buttone[i], 0.005f, 128, ProgrammingProject.processing.loadImage("boom_3.png"));
                     buttone[i].setAsngle((float) (-Math.PI / 2));
-                    buttone[i].setColour(color);
+                    buttone[i].setColour(color2);
                     color = buttone[i].getColour();
                 }
             }
