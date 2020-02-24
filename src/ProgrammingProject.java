@@ -6,6 +6,12 @@ public class ProgrammingProject extends PApplet{
     public static void main(String... args){
         PApplet.main("ProgrammingProject");
     }
+    private Color color = new Color(0,0,0) {
+        @Override
+        public int[] get() {
+            return super.get();
+        }
+    };
 
 //    SinOsc sine100;
 //   public static SoundFile[] sounds;
@@ -35,10 +41,28 @@ public class ProgrammingProject extends PApplet{
 //        fade.resize(width, height);
 //        t = true;
 //        game = new GameInstance();
-
+        Color[] colors = new Color[]{new Color(255,100,100) {
+            @Override
+            public int[] get() {
+                return super.get();
+            }
+        },new Color(100,255,100) {
+            @Override
+            public int[] get() {
+                return super.get();
+            }
+        },new Color(100,100,255) {
+            @Override
+            public int[] get() {
+                return super.get();
+            }
+        }};
         for(int yOffset =1; yOffset<= buttone.length; yOffset++){
             buttone[yOffset-1] = new ImagePObject(new Vector(width/2, (80+20)*yOffset), 80, 80,  loadImage("nuke.png"));
             buttone[yOffset-1].setAsngle((float) (-Math.PI/2));
+            if((yOffset-1)<colors.length){
+               buttone[yOffset-1].setColour(colors[yOffset-1]);
+            }
         }
         background(0);
 //        sounds = new SoundFile[]{new SoundFile(this, "Splat - Gaming Sound Effect (HD).mp3"),new SoundFile(this, "Dark Souls  You Died  Sound Effect.mp3"),
@@ -59,19 +83,25 @@ public class ProgrammingProject extends PApplet{
     }
 
     public void draw(){
-        background(0);
+        int[] c = color.get();
+        background(c[0],c[1],c[2]);
         for(int i=0; i<buttone.length; i++) {
             buttone[i].tick(new Force(new Vector(0,0),0,0));
             if(buttone[i].mouseOver()&&!(buttone[i] instanceof Explosion)){
                 buttone[i].cloneHitbox().show();
                 if(mousePressed) {
-                    buttone[i] = new Explosion(buttone[i].W, 100, buttone[i], 1, 64, ProgrammingProject.processing.loadImage("boom_3.png"));
+                    Color color = buttone[i].getColour();
+                    buttone[i] = new Explosion(buttone[i].W, 200, buttone[i], 0.005f, 128, ProgrammingProject.processing.loadImage("boom_3.png"));
                     buttone[i].setAsngle((float) (-Math.PI / 2));
+                    buttone[i].setColour(color);
+                    color = buttone[i].getColour();
                 }
             }
             if(buttone[i].toDeleat()) {
+                Color color = buttone[i].getColour();
                 buttone[i] = new ImagePObject(buttone[i].position, 80, 80,  loadImage("nuke.png"));
                 buttone[i].setAsngle((float) (-Math.PI/2));
+                buttone[i].setColour(color);
             }
         }
 //        int state = 0;

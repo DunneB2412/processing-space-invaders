@@ -43,5 +43,11 @@ public class PObject extends HitBox{
     PObject[] deathSpawns(){
         return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, (float)0.02, 16)};
     }
+    public Color getColour(){
+        return colour;
+    }
+    public void setColour(Color colour){
+        this.colour=colour;
+    }
 
 }
