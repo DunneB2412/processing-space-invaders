@@ -24,14 +24,14 @@ public class ProgrammingProject extends PApplet{
 
     public void setup(){
         processing = this;
-//        youDied = loadImage("youdead.png");
-//        woop = loadImage("woop2.png");
-//        fade = loadImage("screen_fader.png");
-//        youDied.resize(width, height);
-//        woop.resize(width, height);
-//        fade.resize(width, height);
+        youDied = loadImage("src/main/data/youdead.png");
+        woop = loadImage("woop2.png");
+        fade = loadImage("screen_fader.png");
+        youDied.resize(width, height);
+        woop.resize(width, height);
+        fade.resize(width, height);
         t = true;
-        game = new GameInstance();
+        //game = new GameInstance();
         background(0);
 //        sounds = new SoundFile[]{new SoundFile(this, "Splat - Gaming Sound Effect (HD).mp3"),new SoundFile(this, "Dark Souls  You Died  Sound Effect.mp3"),
 //                new SoundFile(this, "Metal Hit 09 Sound Effects.mp3"),new SoundFile(this, "Missile+1.mp3"),new SoundFile(this, "Explosion+1.mp3"),new SoundFile(this, "Torpedo+Explosion.mp3")};
@@ -51,8 +51,8 @@ public class ProgrammingProject extends PApplet{
     }
 
     public void draw(){
-        int state = 0;
-        if((state = game.state())==0){
+        int state = 1;
+        if(false||(state = game.state())==0){
             background(0);
             //image(fade,0,0);
             game.tick();
