@@ -97,6 +97,10 @@ public class HitBox{
         ProgrammingProject.processing.rect((-W/2)+3, (-H/2)+3, W-6, H-6);
     }
 
+    boolean mouseOver() {
+        return new HitBox(new Vector(ProgrammingProject.processing.mouseX, ProgrammingProject.processing.mouseY),1,1).collide(this);
+    }
+
     //private void wallPhase(){
     //}
 }
