@@ -12,6 +12,7 @@ public class Explosion extends ImagePObject{
         int root = (int)Math.sqrt(particalN);
         particalN = root*root;
         particals = new PObject[particalN];
+
         if(O instanceof ImagePObject && ((ImagePObject)O).textures.length>0){
             for(int i = 0; i< particals.length ;i++){
                 particals[i] = new ImagePObject(new Vector(O.topLeft().X+((i%root)*(O.W/(particalN/root)))+(O.W/(particalN/root))/root,O.topLeft().Y+((i/root)*(O.H/(particalN/root)))+(O.H/(particalN/root))/root), O.W/(particalN/root),O.H/(particalN/root),((ImagePObject)O).textures[0].get((i%root)*(O.W/(particalN/root)), (i/root)*(O.H/(particalN/root)),O.W/(particalN/root),O.H/(particalN/root)));
@@ -32,7 +33,12 @@ public class Explosion extends ImagePObject{
     @Override
     void tick(Force eForce){
         super.tick(new Force(new Vector(0,0),0,0));
+//        ProgrammingProject.processing.pushMatrix();
+//        ProgrammingProject.processing.translate(position.X, position.Y);
+//        ProgrammingProject.processing.rotate(angle);
         for(PObject p: particals){
+            //Vector posT = p.position;
+            //p.position = new Vector(posT.X-position.X, posT.Y-position.Y);
             if(p.position.abs(position)<W){
                 float r;
                 if((r=((position.X-p.position.X)-(position.Y-p.position.Y)))==0){
@@ -42,7 +48,9 @@ public class Explosion extends ImagePObject{
             }else{
                 p.tick(new Force(new Vector(0,0),0,0));
             }
+            //p.position=posT;
         }
+        //ProgrammingProject.processing.popMatrix();
         this.duration--;
     }
     boolean toDeleat(){
