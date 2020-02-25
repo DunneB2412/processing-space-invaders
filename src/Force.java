@@ -1,4 +1,5 @@
 public class Force {
+    public static final Force NONE = new Force(new Vector(0,0),0,0);
     Vector momentom;
     float rpt, weight;
     Force(Vector momentom, float rpt, float weight){

@@ -1,6 +1,8 @@
-public abstract class Color implements GetColor{
+package texturing;
+
+public class Color{
     protected int red, dr, green, dg, blue, db;
-    Color(int red, int green, int blue){
+    public Color(int red, int green, int blue){
         this.red = red;
         this.green = green;
         this.blue = blue;
@@ -10,8 +12,4 @@ public abstract class Color implements GetColor{
     public int[] get(){
         return new int[]{red, green, blue};
     }
-}
-
-interface GetColor{
-    public int[] get();
 }

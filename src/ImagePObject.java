@@ -29,6 +29,6 @@ public class ImagePObject extends PObject{
     }
 
     PObject spawnAt(Vector position){
-        return new Ghost(W,H,position.clone(),textures);
+        return new ImagePObject(position.clone(),W,H,textures);
     }
 }

@@ -1,14 +1,12 @@
+import texturing.Color;
+
 public class PObject extends HitBox{
     protected Force localForce;
     private Color colour;
     private float weight;
 
     PObject(Vector position, int w, int h){
-        this(position, w, h, 1, new Color(100,100,100){
-            public int[] get(){
-                return new int[]{this.red, this.green, this.blue};
-            }
-        });//default color
+        this(position, w, h, 1, new Color(100,100,100));//default color
     }
     PObject(Vector position, int w, int h, float weigth, Color colour){
         super(position, w, h);
