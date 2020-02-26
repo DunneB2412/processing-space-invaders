@@ -4,7 +4,7 @@ import texturing.Resource;
 
 public class PObject extends HitBox{
     protected Force localForce;
-    protected Resource[] resources;
+    protected PImage[] resources;
     private Color colour;
     private float weight;
 
@@ -16,11 +16,9 @@ public class PObject extends HitBox{
         this.weight = weigth;
         localForce = new Force(new Vector(0,0), 0, this.weight);
         this.colour = colour;
-        resources = new Resource[pImages.length];
-        int i = 0;
-        for(PImage image: pImages){
+        resources = pImages;
+        for(PImage image: resources){
             image.resize(w,h);
-            resources[i] = new Resource(image, ProgrammingProject.processing);
         }
 
     }
@@ -35,8 +33,11 @@ public class PObject extends HitBox{
     }
     @Override
     void sprite(){
+        showResource((int)ProgrammingProject.processing.random(resources.length));
+    }
+    protected void showResource(int index){
         if(resources.length>0){
-            ProgrammingProject.processing.image(resources[(int)ProgrammingProject.processing.random(resources.length)].getTexture(), -W/2, -H/2);
+            ProgrammingProject.processing.image(resources[Math.max(Math.min(index,resources.length),0)],-W/2,-H/2);
         }
         else{
             int[] colour = this.colour.get();
@@ -44,21 +45,13 @@ public class PObject extends HitBox{
             ProgrammingProject.processing.rect(-W/2,-H/2,W,H);
         }
     }
-    protected void showResource(int index){
-        if(resources.length>0){
-            //ProgrammingProject.processing.image(doStuff);
-        }
-    }
 
     HitBox cloneHitBox(){
         return super.clone();
     }
     PObject spawnAt(Vector position){
-        return new PObject(position, W,H,weight, colour);
+        return new PObject(position, W,H,weight, colour, resources);
     }
-//    PObject spawnAt(Vector position){
-//        return new ImagePObject(position.clone(),W,H,textures);
-//    }
     PObject[] deathSpawns(){
         return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, (float)0.02, 16)};
     }

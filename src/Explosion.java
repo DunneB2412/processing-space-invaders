@@ -17,7 +17,7 @@ public class Explosion extends PObject{
 
         if(O.resources.length>0){
             for(int i = 0; i< particals.length ;i++){
-                particals[i] = new PObject(new Vector(O.topLeft().X+((i%root)*(O.W/(particalN/root)))+(O.W/(particalN/root))/root,O.topLeft().Y+((i/root)*(O.H/(particalN/root)))+(O.H/(particalN/root))/root), O.W/(particalN/root),O.H/(particalN/root), 1, Color.GREIGH,O.resources[0].getTexture().get((i%root)*(O.W/(particalN/root)), (i/root)*(O.H/(particalN/root)),O.W/(particalN/root),O.H/(particalN/root)));
+                particals[i] = new PObject(new Vector(O.topLeft().X+((i%root)*(O.W/(particalN/root)))+(O.W/(particalN/root))/root,O.topLeft().Y+((i/root)*(O.H/(particalN/root)))+(O.H/(particalN/root))/root), O.W/(particalN/root),O.H/(particalN/root), 1, Color.GREIGH,O.resources[0].get((i%root)*(O.W/(particalN/root)), (i/root)*(O.H/(particalN/root)),O.W/(particalN/root),O.H/(particalN/root)));
             }
         }else{
             for(int i = 0; i< particals.length ;i++){

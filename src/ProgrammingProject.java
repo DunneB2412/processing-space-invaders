@@ -1,6 +1,5 @@
 import processing.core.PApplet;
 import texturing.Color;
-import texturing.Resource;
 
 import java.util.ArrayList;
 
@@ -36,12 +35,7 @@ public class ProgrammingProject extends PApplet{
     }
 
     public void draw(){
-        background(0);
-        fill(Color.GREEN.toInt());
-        rect(0,0,Resource.TEXTURE_MAP.width, Resource.TEXTURE_MAP.height);
-        image(Resource.TEXTURE_MAP,0,0);
-        new Explosion(10,2, screens[4].objects.get(0),1,4);
-        //screens[screenPointer].tick();
+        screens[screenPointer].tick();
 
     }
 }

@@ -27,7 +27,7 @@ public class Button extends PObject {
     @Override
     public void sprite(){
 
-        ProgrammingProject.processing.image(resources[state].getTexture(),-W/2,-H/2);
+        ProgrammingProject.processing.image(resources[state],-W/2,-H/2);
         if(mouseOver()){
             //ProgrammingProject.processing.image(textures[textures.length-1],-W/2,-H/2);
             //ProgrammingProject.processing.image(textures[textures.length-2],-W/2,-H/2);
