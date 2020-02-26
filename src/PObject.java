@@ -24,7 +24,15 @@ public class PObject extends HitBox{
         angle += (2*Math.PI)*localForce.rpt;
         show();
     }
-
+    @Override
+    void sprite(){
+        if(textures.length>0){
+            ProgrammingProject.processing.image(textures[(int)ProgrammingProject.processing.random(textures.length)], -W/2, -H/2);
+        }
+        else{
+            ProgrammingProject.processing.rect(-W/2,-H/2,W,H);
+        }
+    }
     @Override
     void sprite(){
         int[] colour = this.colour.get();
