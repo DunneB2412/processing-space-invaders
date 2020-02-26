@@ -1,14 +1,15 @@
 import processing.core.PImage;
+import texturing.Color;
 
 
-public class Button extends ImagePObject {
+public class Button extends PObject {
     public static final Button CLIOSE_BUTTON = new Button(new Vector(10,10),10,10,"close", -1, ProgrammingProject.processing.loadImage("close.png"));
     private final String name;
     private int state, timer;
     private final int code;
 
     Button(Vector position, int w, int h,String name , int code, PImage image) {
-        super(position, w, h, image);//, Util.getBorder(image),Util.getfader(image));
+        super(position, w, h,1, Color.BLACK, image);//, Util.getBorder(image),Util.getfader(image));
         this.name = name;
         this.code = code;
         state = 0;
@@ -26,7 +27,7 @@ public class Button extends ImagePObject {
     @Override
     public void sprite(){
 
-        ProgrammingProject.processing.image(textures[state],-W/2,-H/2);
+        ProgrammingProject.processing.image(resources[state].getTexture(),-W/2,-H/2);
         if(mouseOver()){
             //ProgrammingProject.processing.image(textures[textures.length-1],-W/2,-H/2);
             //ProgrammingProject.processing.image(textures[textures.length-2],-W/2,-H/2);
@@ -40,7 +41,7 @@ public class Button extends ImagePObject {
         return code;
     }
     public void setState(int state, int cooldown){
-        if(state<textures.length&&timer==0){
+        if(state<resources.length&&timer==0){
             this.state=state;
             timer = cooldown;
         }

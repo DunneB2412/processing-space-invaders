@@ -27,8 +27,8 @@ public class Resource implements Comparable<Resource>{
     private static int[] fitTexture(PImage image, PApplet applet) { // optomise the fit method
         int[] cords = new int[]{0,0};
         for(Resource resource: resourceList){
-            if(resource.X<resource.Y) cords[1]+=resource.W;
-            else cords[0]+=resource.H;
+            if(resource.X<resource.Y) cords[0]+=resource.W;
+            else cords[1]+=resource.H;
         }
         if(TEXTURE_MAP.width<cords[0]+image.width){
             PImage next = applet.createImage(cords[0]+image.width,TEXTURE_MAP.height,2);

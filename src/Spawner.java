@@ -1,8 +1,9 @@
 import processing.core.PImage;
+import texturing.Color;
 
 import java.util.ArrayList;
 
-public class Spawner extends ImagePObject{
+public class Spawner extends PObject{
     protected boolean canSpawn, finished, spawnedThisTick;
     final HitBox spawnZone;
     protected final PObject spawn;
@@ -11,7 +12,7 @@ public class Spawner extends ImagePObject{
     private int dir;
 
     Spawner(int wMultiplier, int hMultiplier, Vector position, PObject spawn, Vector spawnChance, Vector offset, ArrayList<PObject> grupe, PImage... images){
-        super(position, wMultiplier*spawn.W, hMultiplier*spawn.H, images);
+        super(position, wMultiplier*spawn.W, hMultiplier*spawn.H,1, Color.BLACK, images);
         this.spawn = spawn;
         this.grupe = grupe;
         spawnZone = spawn.cloneHitBox();

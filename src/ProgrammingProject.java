@@ -1,5 +1,6 @@
 import processing.core.PApplet;
 import texturing.Color;
+import texturing.Resource;
 
 import java.util.ArrayList;
 
@@ -25,19 +26,22 @@ public class ProgrammingProject extends PApplet{
         screens[1] = new Screen(c,1, Color.RED);
         screens[2] = new Screen(c,2, Color.GREEN);
         screens[3] = new Screen(c,3, Color.BLUE);
-        screens[4] = new Screen(c,4, Color.GREIGH);
+        screens[4] = new Screen(c,4, Color.WHITE);
 
         for(int yOffset =1; yOffset<=4; yOffset++){
             screens[0].addButton(new Button(new Vector(width/2, (180+20)*yOffset), 80, 80,"test", yOffset, loadImage("test.png")));
         }
-        screens[4].addButton(new Slider(new Vector(800,200),10,1,100,100,"slider",loadImage("ghost.png")));
+        screens[4].addButton(new Slider(new Vector(800,200),10,1,100,100,"slider",loadImage("face.png")));
         background(0);
     }
 
     public void draw(){
         background(0);
-
-        screens[screenPointer].tick();
+        fill(Color.GREEN.toInt());
+        rect(0,0,Resource.TEXTURE_MAP.width, Resource.TEXTURE_MAP.height);
+        image(Resource.TEXTURE_MAP,0,0);
+        new Explosion(10,2, screens[4].objects.get(0),1,4);
+        //screens[screenPointer].tick();
 
     }
 }

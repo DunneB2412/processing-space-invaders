@@ -1,18 +1,27 @@
+import processing.core.PImage;
 import texturing.Color;
+import texturing.Resource;
 
 public class PObject extends HitBox{
     protected Force localForce;
+    protected Resource[] resources;
     private Color colour;
     private float weight;
 
     PObject(Vector position, int w, int h){
-        this(position, w, h, 1, new Color(100,100,100));//default color
+        this(position, w, h, 1, new Color(100,100,100,255));//default color
     }
-    PObject(Vector position, int w, int h, float weigth, Color colour){
+    PObject(Vector position, int w, int h, float weigth, Color colour, PImage... pImages){
         super(position, w, h);
         this.weight = weigth;
         localForce = new Force(new Vector(0,0), 0, this.weight);
         this.colour = colour;
+        resources = new Resource[pImages.length];
+        int i = 0;
+        for(PImage image: pImages){
+            image.resize(w,h);
+            resources[i] = new Resource(image, ProgrammingProject.processing);
+        }
 
     }
     void tick(Force eForce){
@@ -26,18 +35,19 @@ public class PObject extends HitBox{
     }
     @Override
     void sprite(){
-        if(textures.length>0){
-            ProgrammingProject.processing.image(textures[(int)ProgrammingProject.processing.random(textures.length)], -W/2, -H/2);
+        if(resources.length>0){
+            ProgrammingProject.processing.image(resources[(int)ProgrammingProject.processing.random(resources.length)].getTexture(), -W/2, -H/2);
         }
         else{
+            int[] colour = this.colour.get();
+            ProgrammingProject.processing.fill(colour[0], colour[1], colour[2]);
             ProgrammingProject.processing.rect(-W/2,-H/2,W,H);
         }
     }
-    @Override
-    void sprite(){
-        int[] colour = this.colour.get();
-        ProgrammingProject.processing.fill(colour[0], colour[1], colour[2]);
-        ProgrammingProject.processing.rect(-W/2, -H/2, W, H);
+    protected void showResource(int index){
+        if(resources.length>0){
+            //ProgrammingProject.processing.image(doStuff);
+        }
     }
 
     HitBox cloneHitBox(){
@@ -46,6 +56,9 @@ public class PObject extends HitBox{
     PObject spawnAt(Vector position){
         return new PObject(position, W,H,weight, colour);
     }
+//    PObject spawnAt(Vector position){
+//        return new ImagePObject(position.clone(),W,H,textures);
+//    }
     PObject[] deathSpawns(){
         return new PObject[]{new Explosion((float)Math.sqrt((W*W)+(H*H)),100, this, (float)0.02, 16)};
     }
@@ -55,5 +68,4 @@ public class PObject extends HitBox{
     public void setColour(Color colour){
         this.colour=colour;
     }
-
 }

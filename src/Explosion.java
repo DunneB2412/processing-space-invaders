@@ -1,21 +1,23 @@
 import processing.core.PImage;
+import texturing.Color;
 
-public class Explosion extends ImagePObject{
-    //private static final PImage[] explosion = new PImage[]{loadImage("boom_3.png"), loadImage("boom_2.png"), loadImage("boom_1.png")}
+public class Explosion extends PObject{
+    private static final PImage[] explosion = new PImage[]{ProgrammingProject.processing.loadImage("boom_3.png"),
+            ProgrammingProject.processing.loadImage("boom_2.png"), ProgrammingProject.processing.loadImage("boom_1.png")};
     private final float force;
     private final PObject[] particals;
     private final int s;
     private int duration;
 
-    Explosion(float aoe, int duration, PObject O, float force, int particalN, PImage... pImages){
-        super(O.position.clone(), (int)aoe, (int)aoe, pImages);
+    Explosion(float aoe, int duration, PObject O, float force, int particalN){
+        super(O.position.clone(), (int)aoe, (int)aoe,1,Color.BLACK);
         int root = (int)Math.sqrt(particalN);
         particalN = root*root;
         particals = new PObject[particalN];
 
-        if(O instanceof ImagePObject && ((ImagePObject)O).textures.length>0){
+        if(O.resources.length>0){
             for(int i = 0; i< particals.length ;i++){
-                particals[i] = new ImagePObject(new Vector(O.topLeft().X+((i%root)*(O.W/(particalN/root)))+(O.W/(particalN/root))/root,O.topLeft().Y+((i/root)*(O.H/(particalN/root)))+(O.H/(particalN/root))/root), O.W/(particalN/root),O.H/(particalN/root),((ImagePObject)O).textures[0].get((i%root)*(O.W/(particalN/root)), (i/root)*(O.H/(particalN/root)),O.W/(particalN/root),O.H/(particalN/root)));
+                particals[i] = new PObject(new Vector(O.topLeft().X+((i%root)*(O.W/(particalN/root)))+(O.W/(particalN/root))/root,O.topLeft().Y+((i/root)*(O.H/(particalN/root)))+(O.H/(particalN/root))/root), O.W/(particalN/root),O.H/(particalN/root), 1, Color.GREIGH,O.resources[0].getTexture().get((i%root)*(O.W/(particalN/root)), (i/root)*(O.H/(particalN/root)),O.W/(particalN/root),O.H/(particalN/root)));
             }
         }else{
             for(int i = 0; i< particals.length ;i++){
@@ -62,9 +64,8 @@ public class Explosion extends ImagePObject{
 
     @Override
     void sprite(){
-        //int t = (duration/(s/textures.length+1));
-
-        ProgrammingProject.processing.image(textures[0], -W/2, -H/2);
+        int t = (duration/(s/explosion.length+1));
+        ProgrammingProject.processing.image(explosion[t], -W/2, -H/2);
     }
     @Override
     PObject[] deathSpawns(){

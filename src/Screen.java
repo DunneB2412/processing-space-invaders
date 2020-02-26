@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Screen {
-    private final List<PObject> objects;
+    public final List<PObject> objects;
     private final List<Integer> eventCodes;
     private boolean editMode;
     private int parentScreenCode;
