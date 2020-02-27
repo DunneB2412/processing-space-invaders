@@ -1,4 +1,5 @@
 
+import processing.core.PImage;
 import texturing.Color;
 
 import java.util.ArrayList;
@@ -27,6 +28,14 @@ public class Screen {
             if(o instanceof Button && ((Button) o).isPressed()) {
                 eventCodes.add(((Button) o).getEventCode());
                 ((Button) o).setState(0, 30);
+//                if(o instanceof Slider){
+//                    if(((Slider) o).percent>=99) {
+//                        PImage image = ProgrammingProject.processing.loadImage("face.png");
+//                        image.resize(ProgrammingProject.processing.width, ProgrammingProject.processing.height);
+//                        ProgrammingProject.processing.image(image, 0, 0);
+//                        System.out.println("WALDRON!!!");
+//                    }
+//                }
             }
         }
 
@@ -43,10 +52,6 @@ public class Screen {
                 ProgrammingProject.screenPointer = code;
                 ProgrammingProject.screens[parentScreenCode].parentScreenCode = this.screenCode;
             }
-//            else if(code == -10){
-//                int[] c = backgroundColor.get();
-//                this.backgroundColor new Color()
-//            }
         }
         eventCodes.clear();
     }

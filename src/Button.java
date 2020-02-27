@@ -3,13 +3,13 @@ import texturing.Color;
 
 
 public class Button extends PObject {
-    public static final Button CLIOSE_BUTTON = new Button(new Vector(10,10),10,10,"close", -1, ProgrammingProject.processing.loadImage("close.png"));
+    public static final Button CLIOSE_BUTTON = new Button(new Vector(10,10),10,10,"close", -1, ProgrammingProject.processing.loadImage("face.png"));
     private final String name;
     private int state, timer;
     private final int code;
 
     Button(Vector position, int w, int h,String name , int code, PImage image) {
-        super(position, w, h,1, Color.BLACK, image);//, Util.getBorder(image),Util.getfader(image));
+        super(position, w, h,1, Color.BLACK, image, Util.getBorder(image),Util.getfader(image));
         this.name = name;
         this.code = code;
         state = 0;
@@ -28,9 +28,10 @@ public class Button extends PObject {
     public void sprite(){
 
         ProgrammingProject.processing.image(resources[state],-W/2,-H/2);
+
         if(mouseOver()){
-            //ProgrammingProject.processing.image(textures[textures.length-1],-W/2,-H/2);
-            //ProgrammingProject.processing.image(textures[textures.length-2],-W/2,-H/2);
+                ProgrammingProject.processing.image(resources[resources.length-1],-W/2,-H/2);
+                ProgrammingProject.processing.image(resources[resources.length-2],-W/2,-H/2);
         }
     }
     public boolean isPressed(){

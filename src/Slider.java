@@ -1,16 +1,18 @@
 import processing.core.PImage;
 
 public class Slider extends Button{
-    private Float percent;
+    public Float percent;
     private final Button button;
 
     Slider(Vector position,int wM, int hM, int w, int h, String name, PImage image) {
-        super(position, w*wM, h*hM, name,0, ProgrammingProject.processing.loadImage("test.png"));
+        super(position, w*wM, h*hM, name,0, ProgrammingProject.processing.loadImage("face.png"));
         this.button = new Button(new Vector(position.X-(W/2-w/2),position.Y),w,h, name, -20, image);
+        percent = 0f;
     }
     @Override
     public void tick(Force force){
         super.tick(Force.NONE);
+        ProgrammingProject.processing.text(percent, position.X,position.Y);
         if(button.isPressed()||this.isPressed()){
             button.position = followMouse();
         }
@@ -18,6 +20,11 @@ public class Slider extends Button{
         System.out.println(percent);
         button.setAsngle((float) (((Math.PI*4)/100)*percent));
         button.tick(Force.NONE);
+        if(percent>=99) {
+            PImage image = ProgrammingProject.processing.loadImage("face.png");
+            image.resize(ProgrammingProject.processing.width, ProgrammingProject.processing.height);
+            ProgrammingProject.processing.image(image, 0, 0);
+        }
 
     }
 
