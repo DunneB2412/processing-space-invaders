@@ -2,7 +2,6 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import texturing.Color;
 
-import java.awt.print.PageFormat;
 import java.util.ArrayList;
 
 public class ProgrammingProject extends PApplet{
